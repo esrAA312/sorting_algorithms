@@ -21,17 +21,16 @@ void insertion_sort_list(listint_t **list)
 
 		while (Ipoint->prev != NULL && Ipoint->n < Ipoint->prev->n)
 		{
-			/* Swap nodes */
 			te = Ipoint->prev;
 			Ipoint->prev = te->prev;
 			te->prev = Ipoint;
 			te->next = Ipoint->next;
 			Ipoint->next = te;
 
-			if (te->next != NULL)
+			if (te->next)
 				te->next->prev = te;
 
-			if (Ipoint->prev != NULL)
+			if (Ipoint->prev)
 				Ipoint->prev->next = Ipoint;
 			else
 				*list = Ipoint;
