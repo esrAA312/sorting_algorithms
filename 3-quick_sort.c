@@ -39,7 +39,7 @@ int par_t(int *array, size_t size, size_t fir, size_t las)
 		{
 			if (up < dow)
 			{
-				sw_ap_int(array[dow], array[up]);
+				sw_ap_int(array + dow, array + up);
 				print_array(array, size);
 			}
 			up++;
@@ -50,7 +50,7 @@ int par_t(int *array, size_t size, size_t fir, size_t las)
 
 	if (array[up] > pivot)
 	{
-		sw_ap_int(array[up], array[las]);
+		sw_ap_int(array + up, array + las);
 		print_array(array, size);
 	}
 
