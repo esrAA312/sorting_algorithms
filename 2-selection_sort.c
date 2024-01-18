@@ -9,10 +9,9 @@
 void selection_sort(int *array, size_t size)
 {
 	size_t i, j, Idx;
-	int temp;
 
-	if (array == NULL || size == NULL)
-		return ();
+	if (array == NULL || !size)
+		return ;
 	i = 0;
 
 	while (i < size - 1)
@@ -26,7 +25,7 @@ void selection_sort(int *array, size_t size)
 
 		if (Idx != i)
 		{
-			swap_ints(array[i], array[Idx]);
+			swap_ints(array + i,array + Idx);
 			print_array(array, size);
 		}
 
