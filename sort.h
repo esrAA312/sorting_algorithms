@@ -35,4 +35,11 @@ void shell_sort(int *array, size_t size);
 void MER(int *array, int *te, size_t arrle, size_t Mle, size_t arri);
 void recsort(int *array, int *te, size_t arrle, size_t arri);
 void merge_sort(int *array, size_t size);
+void counting_sort(int *array, size_t size);
+void counting_sort(int *array, size_t size);
+void cocktail_sort_list(listint_t **list);
+
+
+void swap_node_ahead(listint_t **list, listint_t **tail, listint_t **shaker);
+void swap_node_behind(listint_t **list, listint_t **tail, listint_t **shaker);
 #endif
