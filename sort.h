@@ -35,10 +35,20 @@ void shell_sort(int *array, size_t size);
 void MER(int *array, int *te, size_t arrle, size_t Mle, size_t arri);
 void recsort(int *array, int *te, size_t arrle, size_t arri);
 void merge_sort(int *array, size_t size);
+<<<<<<< HEAD
 void sw_ap(int *de, int *se);
 void he_p(int *array, size_t size, size_t st, size_t en);
 void heap_sort(int *array, size_t size);
 void cocktail_sort_list(listint_t **list);
 void S_node_A(listint_t **list, listint_t **Til, listint_t **SH);
 void S_node_B(listint_t **list, listint_t **Til, listint_t **SH);
+=======
+void counting_sort(int *array, size_t size);
+void counting_sort(int *array, size_t size);
+void cocktail_sort_list(listint_t **list);
+
+
+void swap_node_ahead(listint_t **list, listint_t **tail, listint_t **shaker);
+void swap_node_behind(listint_t **list, listint_t **tail, listint_t **shaker);
+>>>>>>> 751d1c51fb8ba1ff5b58f78629cee03db9b4a30d
 #endif
