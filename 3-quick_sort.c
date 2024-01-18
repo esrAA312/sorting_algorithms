@@ -31,7 +31,7 @@ int par_t(int *array, size_t size, size_t fir, size_t las)
 
 	pivot = array[las];
 	up = dow = fir;
-	while(dow < las)
+	while (dow < las)
 	{
 
 
@@ -71,7 +71,7 @@ void sort_om(int *array, size_t size, int fir, int las)
 
 	if (las - fir > 0)
 	{
-		pro = par_t(array, size, fir,las);
+		pro = par_t(array, size, fir, las);
 		sort_om(array, size, fir, pro - 1);
 		sort_om(array, size, pro + 1, las);
 	}
