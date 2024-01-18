@@ -32,4 +32,7 @@ int par_t(int *array, size_t size, size_t fir, size_t las);
 void sort_om(int *array, size_t size, int fir, int las);
 void quick_sort(int *array, size_t size);
 void shell_sort(int *array, size_t size);
+void MER(int *array, int *te, size_t arrle, size_t Mle, size_t arri);
+void recsort(int *array, int *te, size_t arrle, size_t arri);
+void merge_sort(int *array, size_t size);
 #endif
