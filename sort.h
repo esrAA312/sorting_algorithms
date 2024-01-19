@@ -41,8 +41,12 @@ void heap_sort(int *array, size_t size);
 void cocktail_sort_list(listint_t **list);
 void S_node_A(listint_t **list, listint_t **Til, listint_t **SH);
 void S_node_B(listint_t **list, listint_t **Til, listint_t **SH);
-void counting_sort(int *array, size_t size);
 void cocktail_sort_list(listint_t **list);
+void radix_sort(int *array, size_t size);
 
+
+
+void counting_sort(int *array, size_t size, int exp);
+int get_max(int *array, size_t size);
 
 #endif
