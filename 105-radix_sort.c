@@ -32,10 +32,12 @@ void radix_sort(int *array, size_t size)
  */
 int Maxval(int *array, size_t size)
 {
-	int Mx_va = array[0];
-	size_t X = 1;
+	int Mx_va;
+	size_t X;
 
-	while (X < size)
+	Mx_va = array[0];
+	X = 1;
+	while (size > X)
 	{
 		if (array[X] > Mx_va)
 			Mx_va = array[X];

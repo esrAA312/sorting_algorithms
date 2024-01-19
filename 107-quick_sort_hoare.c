@@ -1,5 +1,13 @@
 #include "sort.h"
 
+/**
+ * par - Implements the partition step in Hoare's QuickSort algorithm.
+ * @array: The array of integers to be sorted.
+ * @size: The size of the array.
+ * @L: The lower index of the partition.
+ * @H: The higher index of the partition.
+ * Return: The index of the pivot after partitioning.
+ */
 int par(int *array, size_t size, int L, int H)
 {
 	int P, i, j, temp;
@@ -20,7 +28,7 @@ int par(int *array, size_t size, int L, int H)
 
 		{
 			te = array[i];
-			array[i] =array[j];
+			array[i] = array[j];
 			array[j] = te;
 			print_array(array, size);
 		}
@@ -28,8 +36,15 @@ int par(int *array, size_t size, int L, int H)
 
 	return (i);
 }
+/**
+ * elp - Recursive function for QuickSort.
+ * @array: The array of integers to be sorted.
+ * @size: The size of the array.
+ * @L: The lower index of the current subarray.
+ * @H: The higher index of the current subarray.
+ */
 
-void elp(int *array, size_t size, int L, int H) 
+void elp(int *array, size_t size, int L, int H)
 {
 	int P_in;
 
@@ -40,8 +55,13 @@ void elp(int *array, size_t size, int L, int H)
 		elp(array, size, P_in, H);
 	}
 }
-
-void quick_sort_hoare(int *array, size_t size) {
+/**
+ * quick_sort_hoare - Hoare's QuickSort Implementation.
+ * @array: The array of integers to be sorted.
+ * @size: The size of the array.
+ */
+void quick_sort_hoare(int *array, size_t size)
+{
 	if (array == NULL || size < 2)
 		return;
 
