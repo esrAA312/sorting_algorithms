@@ -10,7 +10,7 @@
  */
 int par(int *array, size_t size, int L, int H)
 {
-	int P, i, j, temp;
+	int P, i, j, te;
 
 	P = array[H];
 	i = L - 1;
