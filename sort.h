@@ -50,9 +50,8 @@ void CSort(int *array, size_t size, int multe);
 int Maxval(int *array, size_t size);
 
 
-void hoare_quick_sort(int *array, int low, int high, size_t size);
-int hoare_partition(int *array, int low, int high, size_t size);
-void swap(int *a, int *b);
+void quick_sort_helper(int *array, size_t size, int low, int high) ;
+int partition(int *array, size_t size, int low, int high);
 
 
 #endif
