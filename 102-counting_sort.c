@@ -1,68 +1,67 @@
 #include "sort.h"
-
 /**
- * get_max - Get the maximum value in an array of integers.
- * @array: An array of integers.
- * @size: The size of the array.
- *
+ * find_maximum - Find the maximum value in array
+ * @arr: An array of integers.
+ * @len: The length of the array.
  * Return: The maximum integer in the array.
  */
-int get_max(int *array, int size)
+int find_maximum(int *arr, int len)
 {
-	int max, i;
+	int maximumee, idxee;
 
-	for (max = array[0], i = 1; i < size; i++)
+	maximumee = arr[0];
+	idxee = 1;
+	while (idxee < len)
 	{
-		if (array[i] > max)
-			max = array[i];
-	}
-
-	return (max);
-}
-
+		if (arr[idxee] > maximumee)
+			maximumee = arr[idxee];
+		idxee++; }
+	return (maximumee); }
 /**
- * counting_sort - Sort an array of integers in ascending order
- *                 using the counting sort algorithm.
+ * counting_sort - Arrange an array of integers in ascending order
  * @array: An array of integers.
- * @size: The size of the array.
- *
- * Description: Prints the counting array after setting it up.
+ * @size: The length of the array.
  */
 void counting_sort(int *array, size_t size)
 {
-	int *count, *sorted, max, i;
+	int *counteryy, *sorted_arryy, maximumyy, idxyy;
 
-	if (array == NULL || size < 2)
+	if (array == NULL || size < 2 || !size)
 		return;
-
-	sorted = malloc(sizeof(int) * size);
-	if (sorted == NULL)
+	sorted_arryy = malloc(sizeof(int) * size);
+	if (sorted_arryy == NULL)
 		return;
-	max = get_max(array, size);
-	count = malloc(sizeof(int) * (max + 1));
-	if (count == NULL)
+	maximumyy = find_maximum(array, size);
+	counteryy = malloc(sizeof(int) * (maximumyy + 1));
+	if (counteryy == NULL)
 	{
-		free(sorted);
-		return;
-	}
-
-	for (i = 0; i < (max + 1); i++)
-		count[i] = 0;
-	for (i = 0; i < (int)size; i++)
-		count[array[i]] += 1;
-	for (i = 0; i < (max + 1); i++)
-		count[i] += count[i - 1];
-	print_array(count, max + 1);
-
-	for (i = 0; i < (int)size; i++)
+		free(sorted_arryy);
+		return; }
+	idxyy = 0;
+	while (idxyy < (maximumyy + 1))
 	{
-		sorted[count[array[i]] - 1] = array[i];
-		count[array[i]] -= 1;
-	}
-
-	for (i = 0; i < (int)size; i++)
-		array[i] = sorted[i];
-
-	free(sorted);
-	free(count);
-}
+		counteryy[idxyy] = 0;
+		idxyy++; }
+	idxyy = 0;
+	while (idxyy < (int)size)
+	{
+		counteryy[array[idxyy]] += 1;
+		idxyy++; }
+	idxyy = 0;
+	while (idxyy < (maximumyy + 1))
+	{
+		counteryy[idxyy] += counteryy[idxyy - 1];
+		idxyy++; }
+	print_array(counteryy, maximumyy + 1);
+	idxyy = 0;
+	while (idxyy < (int)size)
+	{
+		sorted_arryy[counteryy[array[idxyy]] - 1] = array[idxyy];
+		counteryy[array[idxyy]] -= 1;
+		idxyy++; }
+	idxyy = 0;
+	while (idxyy < (int)size)
+	{array[idxyy] = sorted_arryy[idxyy];
+			idxyy++; }
+	free(sorted_arryy);
+	free(counteryy); }

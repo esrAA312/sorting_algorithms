@@ -1,28 +1,27 @@
-#include <stdio.h>
 #include "sort.h"
 
-int partition(int *array, size_t size, int low, int high)
+int par(int *array, size_t size, int L, int H)
 {
-	int pivot, i, j, temp;
+	int P, i, j, temp;
 
-	pivot = array[high];
-	i = low - 1;
-	j = high + 1;
+	P = array[H];
+	i = L - 1;
+	j = H + 1;
 
 	while (i < j)
 	{
-		while (array[++i] < pivot)
+		while (array[++i] < P)
 			;
 
-		while (array[--j] > pivot)
+		while (array[--j] > P)
 			;
 
 		if (i < j)
 
 		{
-			temp = array[i];
+			te = array[i];
 			array[i] =array[j];
-			array[j] = temp;
+			array[j] = te;
 			print_array(array, size);
 		}
 	}
@@ -30,15 +29,15 @@ int partition(int *array, size_t size, int low, int high)
 	return (i);
 }
 
-void quick_sort_helper(int *array, size_t size, int low, int high) 
+void elp(int *array, size_t size, int L, int H) 
 {
-	int pivot_index;
+	int P_in;
 
-	if (low < high)
+	if (L < H)
 	{
-		pivot_index = partition(array, size,  low, high);
-		quick_sort_helper(array, size,  low, pivot_index - 1);
-		quick_sort_helper(array, size, pivot_index, high);
+		P_in = par(array, size,  L, H);
+		elp(array, size, L, P_in - 1);
+		elp(array, size, P_in, H);
 	}
 }
 
@@ -46,5 +45,5 @@ void quick_sort_hoare(int *array, size_t size) {
 	if (array == NULL || size < 2)
 		return;
 
-	quick_sort_helper(array, size, 0, size - 1);
+	elp(array, size, 0, size - 1);
 }
