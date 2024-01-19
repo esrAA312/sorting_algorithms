@@ -7,90 +7,90 @@
  */
 void radix_sort(int *array, size_t size)
 {
-	int max_element;
-	int exp;
+	int MAX;
+	int multe ;
 
 	if (array == NULL || size < 2)
 		return;
 
-	max_element = getMax(array, size);
-	exp = 1;
+	MAX = Maxval(array, size);
+	multe = 1;
 
-	while (max_element / exp > 0)
+	while (MAX / multe > 0)
 	{
-		countSort(array, size, exp);
+		CSort(array, size, multe);
 		print_array(array, size);
-		exp *= 10;
+		multe *= 10;
 	}
 }
 
 /**
- * getMax - Returns the maximum element from an array
+ * Maxval - Returns the maximum element from an array
  * @array: The array to find the maximum element from
  * @size: The size of the array
  * Return: The maximum element
  */
-int getMax(int *array, size_t size)
+int Maxval(int *array, size_t size)
 {
-	int max_val = array[0];
-	size_t i = 1;
+	int Mx_va = array[0];
+	size_t X = 1;
 
-	while (i < size)
+	while (X < size)
 	{
-		if (array[i] > max_val)
-			max_val = array[i];
-		i++;
+		if (array[X] > Mx_va)
+			Mx_va = array[X];
+		X++;
 	}
 
-	return (max_val);
+	return (Mx_va);
 }
 
 /**
- * countSort - Performs counting sort on an array by a given digit (exp)
+ * CSort - Performs counting sort
  * @array: The array to sort
  * @size: The size of the array
- * @exp: The current significant digit to consider
+ * @multe: The current significant digit 
  */
-void countSort(int *array, size_t size, int exp)
+void CSort(int *array, size_t size, int multe)
 {
-	int *output, *count, j;
+	int *mal, *cal, j;
 	size_t i;
 
-	output = malloc(sizeof(int) * size);
-	count = calloc(10, sizeof(int));
+	mal = malloc(sizeof(int) * size);
+	cal = calloc(10, sizeof(int));
 
-	if (output == NULL || !count)
+	if (mal == NULL || !cal)
 	{
-		free(output);
-		free(count);
+		free(mal);
+		free(cal);
 		return;
 	}
 
 	i = 0;
 	while (i < size)
 	{
-		count[(array[i] / exp) % 10]++;
+		cal[(array[i] / multe) % 10]++;
 		i++;
 	}
 
 	j = 1;
 	while (j < 10)
 	{
-		count[j] += count[j - 1];
+		cal[j] += cal[j - 1];
 		j++;
 	}
 
 	j = size - 1;
 	while (j >= 0)
 	{
-		output[count[(array[j] / exp) % 10] - 1] = array[j];
-		count[(array[j] / exp) % 10]--;
+		mal[cal[(array[j] / multe) % 10] - 1] = array[j];
+		cal[(array[j] / multe) % 10]--;
 		j--; }
 	i = 0;
 	while (i < size)
 	{
-		array[i] = output[i];
+		array[i] = mal[i];
 		i++; }
-	free(output);
-	free(count);
+	free(mal);
+	free(cal);
 }
