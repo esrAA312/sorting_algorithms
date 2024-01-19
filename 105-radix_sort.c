@@ -1,79 +1,96 @@
-
 #include "sort.h"
-/**
- * get_max - Helper function to find the maximum value in an array
- * @array: Array to find the maximum value from
- * @size: Size of the array
- * Return: Maximum value in the array
- */
-int get_max(int *array, size_t size)
-{
-	int max = array[0];
-	size_t i;
 
-	for (i = 1; i < size; i++)
+/**
+ * radix_sort - Sorts using LSD radix sort
+ * @array: The array to sort
+ * @size: The size of the array
+ */
+void radix_sort(int *array, size_t size)
+{
+	int max_element;
+	int exp;
+
+	if (array == NULL || size < 2)
+		return;
+
+	max_element = getMax(array, size);
+	exp = 1;
+
+	while (max_element / exp > 0)
 	{
-		if (array[i] > max)
-			max = array[i];
+		countSort(array, size, exp);
+		print_array(array, size);
+		exp *= 10;
 	}
-	return max;
 }
 
 /**
- * counting_sort - Helper function to perform counting sort on the given digit
- * @array: Array to sort
- * @size: Size of the array
- * @exp: Exponent to get the current digit
+ * getMax - Returns the maximum element from an array
+ * @array: The array to find the maximum element from
+ * @size: The size of the array
+ * Return: The maximum element
  */
-void counting_sort(int *array, size_t size, int exp)
+int getMax(int *array, size_t size)
 {
-	int *output, *count;
+	int max_val = array[0];
+	size_t i = 1;
+
+	while (i < size)
+	{
+		if (array[i] > max_val)
+			max_val = array[i];
+		i++;
+	}
+
+	return (max_val);
+}
+
+/**
+ * countSort - Performs counting sort on an array by a given digit (exp)
+ * @array: The array to sort
+ * @size: The size of the array
+ * @exp: The current significant digit to consider
+ */
+void countSort(int *array, size_t size, int exp)
+{
+	int *output, *count, j;
 	size_t i;
 
 	output = malloc(sizeof(int) * size);
 	count = calloc(10, sizeof(int));
 
-
-	if (!output || !count)
+	if (output == NULL || !count)
 	{
 		free(output);
 		free(count);
 		return;
 	}
 
-	for (i = 0; i < size; i++)
-		count[(array[i] / exp) % 10]++;
-
-	for (i = 1; i < 10; i++)
-		count[i] += count[i - 1];
-
-	for (i = size - 1; i < size; i--)
+	i = 0;
+	while (i < size)
 	{
-		output[count[(array[i] / exp) % 10] - 1] = array[i];
-		count[(array[i] / exp) % 10]--;
+		count[(array[i] / exp) % 10]++;
+		i++;
 	}
 
-	for (i = 0; i < size; i++)
-		array[i] = output[i];
+	j = 1;
+	while (j < 10)
+	{
+		count[j] += count[j - 1];
+		j++;
+	}
 
+	j = size - 1;
+	while (j >= 0)
+	{
+		output[count[(array[j] / exp) % 10] - 1] = array[j];
+		count[(array[j] / exp) % 10]--;
+		j--; }
+	i = 0;
+	while (i < size)
+	{
+		array[i] = output[i];
+		i++; }
 	free(output);
 	free(count);
 }
-
-/**
- * radix_sort - Radix sort algorithm (LSD)
- * @array: Array to sort
- * @size: Size of the array
- */
-void radix_sort(int *array, size_t size)
-{
-	int max, exp;
-	max = get_max(array, size);
-
-	for (exp = 1; max / exp > 0; exp *= 10)
-	{
-		counting_sort(array, size, exp);
-		print_array(array, size);
-	}
-}
-
