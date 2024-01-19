@@ -10,7 +10,7 @@ void shell_sort(int *array, size_t size)
 	size_t G, i, j;
 	int te;
 
-	if (array == NULL || !size)
+	if (array == NULL || size < 2)
 		return;
 
 
