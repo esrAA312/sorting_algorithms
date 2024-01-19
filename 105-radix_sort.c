@@ -8,7 +8,7 @@
 void radix_sort(int *array, size_t size)
 {
 	int MAX;
-	int multe ;
+	int multe;
 
 	if (array == NULL || size < 2)
 		return;
@@ -49,7 +49,7 @@ int Maxval(int *array, size_t size)
  * CSort - Performs counting sort
  * @array: The array to sort
  * @size: The size of the array
- * @multe: The current significant digit 
+ * @multe: The current significant digit
  */
 void CSort(int *array, size_t size, int multe)
 {
