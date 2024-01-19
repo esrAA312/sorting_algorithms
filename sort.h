@@ -44,15 +44,15 @@ void S_node_B(listint_t **list, listint_t **Til, listint_t **SH);
 void cocktail_sort_list(listint_t **list);
 void radix_sort(int *array, size_t size);
 void quick_sort_hoare(int *array, size_t size);
-
-
+void counting_sort(int *array, size_t size);
 void CSort(int *array, size_t size, int multe);
 int Maxval(int *array, size_t size);
 
 
-void hoare_quick_sort(int *array, int low, int high, size_t size);
-int hoare_partition(int *array, int low, int high, size_t size);
-void swap(int *a, int *b);
+void quick_sort_helper(int *array, size_t size, int low, int high);
+int partition(int *array, size_t size, int low, int high);
 
-
+int find_maximum(int *arr, int len);
+int par(int *array, size_t size, int L, int H);
+void elp(int *array, size_t size, int L, int H);
 #endif
