@@ -1,74 +1,85 @@
+#include <stdlib.h>
+#include <string.h>
 #include "deck.h"
-#include "sort.h"
 
-/**
- * swap_nodes - Swap two nodes in a doubly linked list
- * @a: Pointer to the first node
- * @b: Pointer to the second node
- */
-void swap_nodes(deck_node_t *a, deck_node_t *b)
+int compare_cards(const void *a, const void *b) 
 {
-	if (a->prev)
-		a->prev->next = b;
+	int value_a, value_b;
+	const deck_node_t *node_a = *(const deck_node_t **)a;
+	const deck_node_t *node_b = *(const deck_node_t **)b;
+	const card_t *card_a = node_a->card;
+	const card_t *card_b = node_b->card;
 
-	if (b->next)
-		b->next->prev = a;
 
-	a->next = b->next;
-	b->prev = a->prev;
+	if (card_a->kind != card_b->kind)
+	{
+		return card_a->kind - card_b->kind;
+	} else
+	{
 
-	a->prev = b;
-	b->next = a;
+		if (strcmp(card_a->value, "Ace") == 0)
+		{
+			value_a = 1;
+		} else if (strcmp(card_a->value, "King") == 0) {
+			value_a = 13;
+		} else if (strcmp(card_a->value, "Queen") == 0) {
+			value_a = 12;
+		} else if (strcmp(card_a->value, "Jack") == 0) {
+			value_a = 11;
+		} else {
+			value_a = atoi(card_a->value);
+		}
+
+		if (strcmp(card_b->value, "Ace") == 0) {
+			value_b = 1;
+		} else if (strcmp(card_b->value, "King") == 0) {
+			value_b = 13;
+		} else if (strcmp(card_b->value, "Queen") == 0) {
+			value_b = 12;
+		} else if (strcmp(card_b->value, "Jack") == 0) {
+			value_b = 11;
+		} else {
+			value_b = atoi(card_b->value);
+		}
+
+		return value_a - value_b;
+	}
 }
 
-/**
- * compare_cards - Compare two cards for sorting
- * @a: Pointer to the first card
- * @b: Pointer to the second card
- * Return: Integer less than, equal to, or greater than zero if a is found,
- * respectively, to be less than, to match, or be greater than b.
- */
-int compare_cards(const void *a, const void *b)
+void sort_deck(deck_node_t **deck) 
 {
-	const deck_node_t *node_a = *((const deck_node_t **)a);
-	const deck_node_t *node_b = *((const deck_node_t **)b);
-
-	if (node_a->card->kind != node_b->card->kind)
-		return (node_a->card->kind - node_b->card->kind);
-
-	return (node_a->card->value[0] - node_b->card->value[0]);
-}
-
-/**
- * sort_deck - Sort a deck of cards using the Bubble Sort algorithm
- * @deck: Double pointer to the head of the deck
- */
-void sort_deck(deck_node_t **deck)
-{
-	int swapped;
-	deck_node_t *ptr1 = *deck;
-	deck_node_t *lptr = NULL;
+	deck_node_t **nodes;	
+	deck_node_t *current = *deck;
+	int i, count;
 
 	if (deck == NULL || *deck == NULL || (*deck)->next == NULL)
 		return;
-	if (deck == NULL || *deck == NULL)
-		return;
-
-	do
-
+	while (current != NULL) 
 	{
-		swapped = 0;
-		ptr1 = *deck;
+		count++;
+		current = current->next;
+	}
 
-		while (ptr1->next != lptr)
-		{
-			if (compare_cards(&ptr1, &ptr1->next) > 0)
-			{
-				swap_nodes(ptr1, ptr1->next);
-				swapped = 1;
-			}
-			ptr1 = ptr1->next;
-		}
-		lptr = ptr1;
-	} while (swapped);
+	nodes = (deck_node_t **)malloc(count * sizeof(deck_node_t *));
+	current = *deck;
+	for (i = 0; i < count; i++) 
+	{
+		nodes[i] = current;
+		current = current->next;
+	}
+
+	qsort(nodes, count, sizeof(deck_node_t *), compare_cards);
+
+	*deck = nodes[0];
+	current = *deck;
+	current->prev = NULL;
+	for ( i = 1; i < count; i++) 
+	{
+		current->next = nodes[i];
+		nodes[i]->prev = current;
+		current = current->next;
+	}
+	current->next = NULL;
+
+	free(nodes);
 }

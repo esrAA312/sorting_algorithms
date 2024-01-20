@@ -1,3 +1,16 @@
+#ifndef DECK_H
+#define DECK_H
+
+#include <stdlib.h>
+
+/**
+ * enum kind_e - Enumeration of card suits.
+ * @SPADE: Spades suit.
+ * @HEART: Hearts suit.
+ * @CLUB: Clubs suit.
+ * @DIAMOND: Diamonds suit.
+ */
+
 typedef enum kind_e
 {
 	SPADE = 0,
@@ -38,3 +51,5 @@ typedef struct deck_node_s
 void sort_deck(deck_node_t **deck);
 int compare_cards(const void *a, const void *b);
 void swap_nodes(deck_node_t *a, deck_node_t *b);
+
+#endif
