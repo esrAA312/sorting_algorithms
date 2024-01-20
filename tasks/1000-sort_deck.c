@@ -46,6 +46,9 @@ void sort_deck(deck_node_t **deck)
 		last = current;
 	} while (swapped);
 }
+
+
+
 /**
  * _strcmp - Compares two strings.
  * @s1: The first string to be compared.
@@ -56,14 +59,17 @@ void sort_deck(deck_node_t **deck)
  */
 int _strcmp(const char *s1, const char *s2)
 {
-	while (*s1 && *s2 && *s1 == *s2)
-	{
-		s1++;
-		s2++;
-	}
+	int i;
 
-	if (*s1 != *s2)
-		return (*s1 - *s2);
+	i = 0;
+	while (s1[i] != '\0' && s2[i] != '\0')
+	{
+		if (s1[i] != s2[i])
+		{
+			return (s1[i] - s2[i]);
+		}
+		i++;
+	}
 	return (0);
 }
 
@@ -74,32 +80,14 @@ int _strcmp(const char *s1, const char *s2)
  */
 char get_value(deck_node_t *card)
 {
-	if (_strcmp(card->card->value, "Ace") == 0)
-		return (0);
-	if (_strcmp(card->card->value, "1") == 0)
-		return (1);
-	if (_strcmp(card->card->value, "2") == 0)
-		return (2);
-	if (_strcmp(card->card->value, "3") == 0)
-		return (3);
-	if (_strcmp(card->card->value, "4") == 0)
-		return (4);
-	if (_strcmp(card->card->value, "5") == 0)
-		return (5);
-	if (_strcmp(card->card->value, "6") == 0)
-		return (6);
-	if (_strcmp(card->card->value, "7") == 0)
-		return (7);
-	if (_strcmp(card->card->value, "8") == 0)
-		return (8);
-	if (_strcmp(card->card->value, "9") == 0)
-		return (9);
-	if (_strcmp(card->card->value, "10") == 0)
-		return (10);
-	if (_strcmp(card->card->value, "Jack") == 0)
-		return (11);
-	if (_strcmp(card->card->value, "Queen") == 0)
-		return (12);
+	int i;
+	char *values[] = {"Ace", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen"};
+
+	for (i = 0; i < 13; ++i) {
+		if (_strcmp(card->card->value, values[i]) == 0) {
+			return (i);
+		}
+	}
+
 	return (13);
 }
-
