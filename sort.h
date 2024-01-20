@@ -47,8 +47,7 @@ void quick_sort_hoare(int *array, size_t size);
 void counting_sort(int *array, size_t size);
 void CSort(int *array, size_t size, int multe);
 int Maxval(int *array, size_t size);
-void sort_deck(deck_node_t **deck);
-
+void bitonic_sort(int *array, size_t size);
 
 void quick_sort_helper(int *array, size_t size, int low, int high);
 int partition(int *array, size_t size, int low, int high);
@@ -58,6 +57,7 @@ int par(int *array, size_t size, int L, int H);
 void elp(int *array, size_t size, int L, int H);
 
 
-void swap_nodes(deck_node_t *a, deck_node_t *b);
-int compare_cards(const void *a, const void *b);
+
+void bitonic_seq(int *array, size_t size, size_t seq, char flow); 
+void bitonic_merge(int *array, size_t siz, size_t seq, char flow);
 #endif
