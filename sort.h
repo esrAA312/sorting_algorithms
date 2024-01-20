@@ -58,6 +58,6 @@ void elp(int *array, size_t size, int L, int H);
 
 
 
-void bitonic_seq(int *array, size_t size, size_t seq, char flow); 
-void bitonic_merge(int *array, size_t siz, size_t seq, char flow);
+void bitonic_seq(int *array, size_t size, size_t seq, int flow); 
+void bitonic_merge(int *array, size_t siz, size_t seq, int flow);
 #endif
