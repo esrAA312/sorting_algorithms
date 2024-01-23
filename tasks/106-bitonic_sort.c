@@ -1,4 +1,4 @@
-#include "sort.h"
+
 /**
  * merge - Sort a bitonic.
  * @array: An array of integers.
