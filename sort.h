@@ -56,7 +56,10 @@ int find_maximum(int *arr, int len);
 int par(int *array, size_t size, int L, int H);
 void elp(int *array, size_t size, int L, int H);
 
+void merge(int *array, size_t size, size_t S, int dr);
 
+
+void bi_seq(int *array, size_t size, size_t S, int dr);
 
 void bitonic_seq(int *array, size_t size, size_t seq, int flow);
 void bitonic_merge(int *array, size_t siz, size_t seq, int flow);
